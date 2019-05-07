@@ -1,0 +1,30 @@
+{
+    "ratesProvider":
+    {
+        "address": "0.0.0.0",
+        "port": 60001,
+        "updateInterval": 5000
+    },
+
+    "bank1":
+    {
+        "address": "0.0.0.0",
+        "port": 50001,
+        "ratesProviderAddress": "127.0.0.1",
+        "ratesProviderPort": 60001,
+        "baseCurrency": "PLN",
+        "foreignCurrencies": ["USD", "CHF"],
+        "premiumAccountThreshold": 2000
+    },
+
+    "bank2":
+    {
+        "address": "0.0.0.0",
+        "port": 50002,
+        "ratesProviderAddress": "127.0.0.1",
+        "ratesProviderPort": 60001,
+        "baseCurrency": "EUR",
+        "foreignCurrencies": ["CAD", "CHF"],
+        "premiumAccountThreshold": 1000
+    }
+}
