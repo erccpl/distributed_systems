@@ -1,14 +1,21 @@
 package common;
 
+import akka.actor.ActorRef;
+
 public abstract class Request {
 
-    private RequestType requestType;
+    protected RequestType requestType;
+    protected ActorRef client;
 
-    protected Request(RequestType requestType) {
-        this.requestType = requestType;
+    protected Request(){
+        //mandatory default constructor
     }
 
     public RequestType getRequestType() {
         return this.requestType;
+    }
+
+    public ActorRef getClient() {
+        return client;
     }
 }

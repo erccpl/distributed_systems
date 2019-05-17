@@ -16,10 +16,8 @@ public class Server {
         final ActorRef serverActor = system.actorOf(Props.create(ServerActor.class), "server");
         System.out.println(serverActor.path());
 
-
         System.out.println("Sever started. Press 'q' to terminate the server");
 
-        // read line & send to actor
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             String line = br.readLine();
