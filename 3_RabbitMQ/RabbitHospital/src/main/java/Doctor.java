@@ -62,20 +62,23 @@ public class Doctor extends HospitalStaff{
             while (true) {
                 String message = br.readLine();
                 String routingKey = Utils.validateArguments(message);
-                System.out.println("Requesting evaluation: " + message);
+                if (routingKey.equals("knee") || routingKey.equals("hip") || routingKey.equals("elbow")) {
+                    System.out.println("Requesting evaluation: " + message);
 
-                // define where to reply to:
-                BasicProperties props = new BasicProperties
-                        .Builder()
-                        .replyTo(doc1Routing)
-                        .correlationId("doc1")
-                        .timestamp(new Date())
-                        .build();
+                    // define where to reply to:
+                    BasicProperties props = new BasicProperties
+                            .Builder()
+                            .replyTo(doc1Routing)
+                            .correlationId("doc1")
+                            .timestamp(new Date())
+                            .build();
 
-                //publish
-                channel.basicPublish(EXCHANGE_NAME, routingKey, props, message.getBytes(StandardCharsets.UTF_8));
-                channel.basicPublish(LOGGING_EXCHANGE, "log", props, message.getBytes(StandardCharsets.UTF_8));
-
+                    //publish
+                    channel.basicPublish(EXCHANGE_NAME, routingKey, props, message.getBytes(StandardCharsets.UTF_8));
+                    channel.basicPublish(LOGGING_EXCHANGE, "log", props, message.getBytes(StandardCharsets.UTF_8));
+                } else {
+                    System.out.println("We don't specialize in that");
+                }
             }
         } finally {
             // close
