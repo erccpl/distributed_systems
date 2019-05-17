@@ -2,7 +2,9 @@ package common;
 
 import akka.actor.ActorRef;
 
-public abstract class Request {
+import java.io.Serializable;
+
+public abstract class Request implements Serializable {
 
     protected RequestType requestType;
     protected ActorRef client;

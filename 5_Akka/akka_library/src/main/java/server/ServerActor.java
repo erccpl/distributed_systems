@@ -21,7 +21,7 @@ public class ServerActor extends AbstractLoggingActor {
                     //dispatch
                     if (r.getRequestType() == RequestType.SEARCH) {
                         //search dbs
-                        context().child("search_router").get().tell(r, getSelf());
+                        context().child("getPrice_router").get().tell(r, getSelf());
 
                     }
                     else if (r.getRequestType() == RequestType.ORDER) {
@@ -31,6 +31,12 @@ public class ServerActor extends AbstractLoggingActor {
 
                     }
                 })
+
+                .match(String.class, s -> {
+                    System.out.println(s);
+
+                })
+
                 .matchAny(o -> log().debug("Received unknown message"))
                 .build();
     }

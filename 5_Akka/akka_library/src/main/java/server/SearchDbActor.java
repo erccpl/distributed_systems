@@ -8,12 +8,12 @@ public class SearchDbActor extends AbstractLoggingActor {
 
     private String dbAddress;
     private String title;
-    private ActorRef client;
+    private ActorRef gpActor;
 
-    public SearchDbActor(String dbAddress, String title, ActorRef client) {
+    public SearchDbActor(String dbAddress, String title, ActorRef gpActor) {
         this.dbAddress = dbAddress;
         this.title = title;
-        this.client = client;
+        this.gpActor = gpActor;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SearchDbActor extends AbstractLoggingActor {
 
 
                     if(!line.equals("")) {
-                        getSender().tell(line, getSelf());
+                        gpActor.tell(line, getSelf());
                     }
 
                 })

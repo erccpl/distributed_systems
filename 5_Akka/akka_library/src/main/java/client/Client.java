@@ -17,7 +17,7 @@ public class Client {
     public static void main(String[] args) throws Exception {
 
         // config
-        File configFile = new File("src/main/java/resources/client.conf");
+        File configFile = new File("client.conf");
         Config config = ConfigFactory.parseFile(configFile);
 
         // create actor system & actors
