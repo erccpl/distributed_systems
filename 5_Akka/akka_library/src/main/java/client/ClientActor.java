@@ -12,6 +12,7 @@ public class ClientActor extends AbstractLoggingActor {
         return receiveBuilder()
                 .match(SearchRequest.class, r -> {
 
+                    System.out.println("got here in client");
                     ActorSelection remoteServerActor = getContext().actorSelection("akka.tcp://server_system@127.0.0.1:3552/user/server");
                     remoteServerActor.tell(r, getSelf());
 

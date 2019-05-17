@@ -5,6 +5,7 @@ import akka.japi.pf.DeciderBuilder;
 import akka.routing.RoundRobinPool;
 import common.Request;
 import common.RequestType;
+import common.SearchRequest;
 import scala.concurrent.duration.Duration;
 
 

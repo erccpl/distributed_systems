@@ -15,14 +15,13 @@ public class Server {
     public static void main(String[] args) throws Exception {
 
         // create actor system & actors
-        File configFile = new File("/src/main/java/resources/server.conf");
+        File configFile = new File("server.conf");
         Config config = ConfigFactory.parseFile(configFile);
 
         final ActorSystem system = ActorSystem.create("server_system", config);
         final ActorRef serverActor = system.actorOf(Props.create(ServerActor.class), "server");
-        System.out.println(serverActor.path());
 
-        System.out.println("Sever started. Press 'q' to terminate the server");
+        System.out.println("\n Sever started. Press 'q' to terminate the server");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
