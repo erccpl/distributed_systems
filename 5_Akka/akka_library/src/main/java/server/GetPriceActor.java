@@ -5,6 +5,7 @@ import akka.japi.pf.DeciderBuilder;
 import akka.pattern.BackoffOpts;
 import akka.pattern.BackoffSupervisor;
 import common.SearchRequest;
+import scala.concurrent.duration.FiniteDuration;
 
 import java.time.Duration;
 
@@ -40,10 +41,12 @@ public class GetPriceActor extends AbstractLoggingActor {
                 this.client = r.getClient();
                 this.title = r.getQuery();
 
+                System.out.println("GOT HEREs");
+
                 for (String db : dbs) {
 
                     Props searchProps = Props.create(SearchDbActor.class, db, title, client);
-                    final scala.concurrent.duration.FiniteDuration tenSeconds = scala.concurrent.duration.FiniteDuration.apply(10, "seconds");
+                    final FiniteDuration tenSeconds = FiniteDuration.apply(10, "seconds");
 
                     Props supervisorProps =
                         BackoffSupervisor.props(
@@ -55,18 +58,17 @@ public class GetPriceActor extends AbstractLoggingActor {
                                         0.2)
                                 .withAutoReset(tenSeconds)
                                 .withSupervisorStrategy(strategy)
-
                         );
-
                     ActorRef searchActor = context().actorOf(supervisorProps, "searchDbActor:" + db);
                     searchActor.tell(r, getSelf());
                 }
-
             })
+
 
             .match(String.class, s -> {
                 this.line = s;
             })
+
 
             .matchAny(o -> log().info("Received unknown message"))
             .build();

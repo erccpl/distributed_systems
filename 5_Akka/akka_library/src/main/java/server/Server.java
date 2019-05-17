@@ -3,8 +3,11 @@ package server;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 
 public class Server {
@@ -12,7 +15,10 @@ public class Server {
     public static void main(String[] args) throws Exception {
 
         // create actor system & actors
-        final ActorSystem system = ActorSystem.create("server_system");
+        File configFile = new File("/src/main/java/resources/server.conf");
+        Config config = ConfigFactory.parseFile(configFile);
+
+        final ActorSystem system = ActorSystem.create("server_system", config);
         final ActorRef serverActor = system.actorOf(Props.create(ServerActor.class), "server");
         System.out.println(serverActor.path());
 

@@ -49,6 +49,7 @@ public class ServerActor extends AbstractLoggingActor {
                                 .withSupervisorStrategy(searchRouterStrategy())), "getPrice_router");
 
         log().info("GetPriceActor pool created");
+        System.out.println(getSelf().path());
 
     }
 
