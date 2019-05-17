@@ -7,6 +7,7 @@ import java.io.Serializable;
 public abstract class Request implements Serializable {
 
     protected RequestType requestType;
+    protected String query;
     protected ActorRef client;
 
     protected Request(){
@@ -20,4 +21,9 @@ public abstract class Request implements Serializable {
     public ActorRef getClient() {
         return client;
     }
+
+    public String getQuery() {
+        return query;
+    }
+
 }

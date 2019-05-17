@@ -2,12 +2,12 @@ package server;
 
 import akka.actor.*;
 import akka.japi.pf.DeciderBuilder;
-import akka.routing.RoundRobinPool;
 import common.Request;
 import common.RequestType;
-import common.SearchRequest;
 import scala.concurrent.duration.Duration;
 
+
+import java.util.UUID;
 
 import static akka.actor.SupervisorStrategy.restart;
 
@@ -18,13 +18,23 @@ public class ServerActor extends AbstractLoggingActor {
         return receiveBuilder()
                 .match(Request.class, r -> {
 
+                    UUID uuid = UUID.randomUUID();
+                    String randomName = uuid.toString().substring(0,8);
+
                     //dispatch
                     if (r.getRequestType() == RequestType.SEARCH) {
                         //search dbs
-                        context().child("getPrice_router").get().tell(r, getSelf());
+                        //context().child("getPrice_router").get().tell(r, getSelf());
+
+                        context().actorOf(PriceCheckActor.props(), "PriceCheckActor::"+randomName);
+                        context().child("PriceCheckActor::"+randomName).get().tell(r, getSelf());
+
 
                     }
                     else if (r.getRequestType() == RequestType.ORDER) {
+
+                        context().actorOf(Props.create(OrderActor.class, r,"orders.txt"), "OrderActor::"+randomName);
+                        context().child("OrderActor::"+randomName).get().tell(r, getSelf());
 
                     }
                     else if (r.getRequestType() == RequestType.STREAM) {
@@ -33,7 +43,7 @@ public class ServerActor extends AbstractLoggingActor {
                 })
 
                 .match(String.class, s -> {
-                    System.out.println(s);
+                    System.out.println("In server: " + s);
 
                 })
 
@@ -50,13 +60,13 @@ public class ServerActor extends AbstractLoggingActor {
 
         //creat a pool of actors for every type of request
         //search pool
-        final ActorRef getPriceRouter =
-                context().actorOf(GetPriceActor.props()
-                        .withRouter(new RoundRobinPool(10)
-                                .withSupervisorStrategy(searchRouterStrategy())), "getPrice_router");
-
-        log().info("GetPriceActor pool created");
-        System.out.println(getSelf().path());
+//        final ActorRef getPriceRouter =
+//                context().actorOf(PriceCheckActor.props()
+//                        .withRouter(new RoundRobinPool(10)
+//                                .withSupervisorStrategy(searchRouterStrategy())), "getPrice_router");
+//
+//        log().info("PriceCheckActor pool created");
+//        System.out.println(getSelf().path());
 
     }
 

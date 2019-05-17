@@ -14,20 +14,31 @@ public class SearchDbActor extends AbstractLoggingActor {
         this.dbAddress = dbAddress;
         this.title = title;
         this.gpActor = gpActor;
+
+        //should be done in a Future, asynchronously
+
+
+        String line2 = searchDb(dbAddress);
+
+        context().watch(gpActor);
+        if (gpActor.isTerminated())
+        gpActor.tell(line2, getSelf());
+
+
     }
 
     @Override
     public Receive createReceive() {
         return receiveBuilder()
                 .match(SearchRequest.class, r -> {
-
-
-                    String line = searchDb(dbAddress);
-
-
-                    if(!line.equals("")) {
-                        gpActor.tell(line, getSelf());
-                    }
+//
+//
+//                    String line = searchDb(dbAddress);
+//
+//
+//                    if(!line.equals("")) {
+//                        gpActor.tell(line, getSelf());
+//                    }
 
                 })
                 .matchAny(o -> log().info("Received unknown message"))

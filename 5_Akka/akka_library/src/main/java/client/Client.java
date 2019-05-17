@@ -5,6 +5,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import common.OrderRequest;
 import common.Request;
 import common.SearchRequest;
 
@@ -35,6 +36,13 @@ public class Client {
 
                 Request searchRequest = new SearchRequest("AAA");
                 clientActor.tell(searchRequest, null);
+
+
+            } else if (line.equals("o")) {
+
+                Request orderRequest = new OrderRequest("AAA");
+                System.out.println("here" + orderRequest.getRequestType());
+                clientActor.tell(orderRequest, null);
 
 
             }
