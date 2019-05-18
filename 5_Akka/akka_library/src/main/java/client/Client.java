@@ -8,6 +8,7 @@ import com.typesafe.config.ConfigFactory;
 import common.OrderRequest;
 import common.Request;
 import common.SearchRequest;
+import common.StreamRequest;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,7 +33,7 @@ public class Client {
             String line = br.readLine();
             if (line.equals("q")) {
                 break;
-            } else if (line.equals("s")) {
+            } else if (line.equals("d")) {
 
                 Request searchRequest = new SearchRequest("AAA");
                 clientActor.tell(searchRequest, null);
@@ -44,6 +45,11 @@ public class Client {
                 System.out.println("here" + orderRequest.getRequestType());
                 clientActor.tell(orderRequest, null);
 
+            } else if (line.equals("s")) {
+
+                Request streamRequest = new StreamRequest("Pan Tadeusz");
+                System.out.println("got to stream request");
+                clientActor.tell(streamRequest, null);
 
             }
         }

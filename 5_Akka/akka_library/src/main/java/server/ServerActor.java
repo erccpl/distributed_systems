@@ -29,7 +29,6 @@ public class ServerActor extends AbstractLoggingActor {
                         context().actorOf(PriceCheckActor.props(), "PriceCheckActor::"+randomName);
                         context().child("PriceCheckActor::"+randomName).get().tell(r, getSelf());
 
-
                     }
                     else if (r.getRequestType() == RequestType.ORDER) {
 
@@ -38,6 +37,9 @@ public class ServerActor extends AbstractLoggingActor {
 
                     }
                     else if (r.getRequestType() == RequestType.STREAM) {
+
+                        context().actorOf(Props.create(StreamActor.class, r, "pan-tadeusz.txt", getSender()), "StreamActor::"+randomName);
+                        context().child("StreamActor::"+randomName).get().tell(r, getSelf());
 
                     }
                 })

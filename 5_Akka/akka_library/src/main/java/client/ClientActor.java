@@ -5,10 +5,12 @@ import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorSelection;
 import common.Request;
 import common.RequestType;
-import common.SearchRequest;
 
 
 public class ClientActor extends AbstractLoggingActor {
+
+    private final String remoteServerPath = "akka.tcp://server_system@127.0.0.1:3552/user/server";
+
     @Override
     public AbstractActor.Receive createReceive() {
         return receiveBuilder()
@@ -17,13 +19,18 @@ public class ClientActor extends AbstractLoggingActor {
 
                     if (r.getRequestType() == RequestType.SEARCH) {
 
-                        System.out.println("got here in client");
-                        ActorSelection remoteServerActor = getContext().actorSelection("akka.tcp://server_system@127.0.0.1:3552/user/server");
+                        System.out.println("got here search");
+                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
 
                     } else if (r.getRequestType() == RequestType.ORDER) {
                         System.out.println("got here order");
-                        ActorSelection remoteServerActor = getContext().actorSelection("akka.tcp://server_system@127.0.0.1:3552/user/server");
+                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
+                        remoteServerActor.tell(r, getSelf());
+
+                    } else if (r.getRequestType() == RequestType.STREAM) {
+                        System.out.println("got here stream");
+                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
                     }
 
