@@ -3,7 +3,7 @@ akka.pdf
 akka_library2/
     
 .gradle
-/build/
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

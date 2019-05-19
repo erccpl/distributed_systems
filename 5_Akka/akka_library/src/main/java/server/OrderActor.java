@@ -2,9 +2,7 @@ package server;
 
 import akka.actor.AbstractLoggingActor;
 import akka.actor.PoisonPill;
-import common.OrderRequest;
 import common.Request;
-import common.SearchRequest;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -24,7 +22,7 @@ public class OrderActor extends AbstractLoggingActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(OrderRequest.class, r -> {
+                .match(Request.class, r -> {
                     System.out.println("got to file writer");
 
                     try {

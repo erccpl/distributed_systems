@@ -4,14 +4,15 @@ import akka.actor.ActorRef;
 
 import java.io.Serializable;
 
-public abstract class Request implements Serializable {
+public class Request implements Serializable {
 
-    protected RequestType requestType;
-    protected String query;
-    protected ActorRef client;
+    private RequestType requestType;
+    private String query;
+    private ActorRef client;
 
-    protected Request(){
-        //mandatory default constructor
+    public Request(String query, RequestType requestType){
+        this.query = query;
+        this.requestType = requestType;
     }
 
     public RequestType getRequestType() {

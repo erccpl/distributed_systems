@@ -1,11 +1,8 @@
 package server;
 
-import akka.Done;
-import akka.NotUsed;
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorRef;
 import akka.actor.PoisonPill;
-import akka.actor.dsl.Creators;
 import akka.stream.*;
 import akka.stream.javadsl.FileIO;
 import akka.stream.javadsl.Framing;
@@ -13,17 +10,14 @@ import akka.stream.javadsl.FramingTruncation;
 import akka.stream.javadsl.Sink;
 import akka.util.ByteString;
 import common.Request;
-import common.StreamRequest;
 import scala.Function1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
-import java.util.function.Function;
 
 
 public class StreamActor extends AbstractLoggingActor {
@@ -41,7 +35,7 @@ public class StreamActor extends AbstractLoggingActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(StreamRequest.class, r -> {
+                .match(Request.class, r -> {
                     System.out.println("got to stream reader");
 
                     try {

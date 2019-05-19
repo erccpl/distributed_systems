@@ -2,51 +2,44 @@ package server;
 
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorRef;
-import common.SearchRequest;
+import common.RequestType;
+import common.Response;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class SearchDbActor extends AbstractLoggingActor {
 
-    private String dbAddress;
-    private String title;
-    private ActorRef gpActor;
+    public SearchDbActor(String dbAddress, String title, ActorRef gpActor) throws FileNotFoundException {
 
-    public SearchDbActor(String dbAddress, String title, ActorRef gpActor) {
-        this.dbAddress = dbAddress;
-        this.title = title;
-        this.gpActor = gpActor;
+        double price = 0;
+        System.out.println("Got to SearchDbActor");
 
-        //should be done in a Future, asynchronously
+        File dbFile = new File(dbAddress);
+        Scanner scanner = new Scanner(dbFile);
+        scanner.useDelimiter("\\n");
+        while (scanner.hasNext()) {
+            String[] currentTitlePrice = scanner.next().split(",");
+            if (currentTitlePrice[0].equals(title)) {
+                price = Double.parseDouble(currentTitlePrice[1]);
+            }
+        }
+        scanner.close();
 
-
-        String line2 = searchDb(dbAddress);
-
-        context().watch(gpActor);
-        if (gpActor.isTerminated())
-        gpActor.tell(line2, getSelf());
-
-
+        Response response = new Response(RequestType.SEARCH);
+        response.setPrice(price);
+        response.setMessage(title);
+        gpActor.tell(response, getSelf());
     }
+
 
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(SearchRequest.class, r -> {
-//
-//
-//                    String line = searchDb(dbAddress);
-//
-//
-//                    if(!line.equals("")) {
-//                        gpActor.tell(line, getSelf());
-//                    }
-
-                })
                 .matchAny(o -> log().info("Received unknown message"))
                 .build();
-    }
-
-    public String searchDb(String dbAddress) {
-        return "AAA, 20:20";
     }
 
 

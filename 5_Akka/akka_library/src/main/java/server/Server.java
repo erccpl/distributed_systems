@@ -19,7 +19,7 @@ public class Server {
         Config config = ConfigFactory.parseFile(configFile);
 
         final ActorSystem system = ActorSystem.create("server_system", config);
-        final ActorRef serverActor = system.actorOf(Props.create(ServerActor.class), "server");
+        system.actorOf(Props.create(ServerActor.class), "server");
 
         System.out.println("\n Sever started. Press 'q' to terminate the server");
 

@@ -5,6 +5,7 @@ import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorSelection;
 import common.Request;
 import common.RequestType;
+import common.Response;
 
 
 public class ClientActor extends AbstractLoggingActor {
@@ -16,25 +17,30 @@ public class ClientActor extends AbstractLoggingActor {
         return receiveBuilder()
                 .match(Request.class, r -> {
 
-
                     if (r.getRequestType() == RequestType.SEARCH) {
 
-                        System.out.println("got here search");
                         ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
 
                     } else if (r.getRequestType() == RequestType.ORDER) {
-                        System.out.println("got here order");
+
                         ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
 
                     } else if (r.getRequestType() == RequestType.STREAM) {
-                        System.out.println("got here stream");
+
                         ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
                     }
 
                     })
+                .match(Response.class, response -> {
+
+
+
+
+
+                })
                 .matchAny(o -> log().info("received unknown message"))
                 .build();
     }

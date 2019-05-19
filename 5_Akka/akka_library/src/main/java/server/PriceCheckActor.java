@@ -4,7 +4,8 @@ import akka.actor.*;
 import akka.japi.pf.DeciderBuilder;
 import akka.pattern.BackoffOpts;
 import akka.pattern.BackoffSupervisor;
-import common.SearchRequest;
+import common.Request;
+import common.Response;
 import scala.concurrent.duration.FiniteDuration;
 
 import java.io.FileNotFoundException;
@@ -17,29 +18,27 @@ import static akka.actor.SupervisorStrategy.restart;
 
 public class PriceCheckActor extends AbstractLoggingActor {
 
-    //Poison pill should trigger the restart; no actor should be removed
-    //from pool, only get restarted
-
     private String title = "";
     private String line = "";
+    private ActorRef client;
 
     private int notFoundCounter = 0;
     private int reported = 0;
     private Boolean bookFound = false;
 
     private ArrayList<ActorRef> children = new ArrayList<>();
+    private ArrayList<String> dbs;
 
-
-    String[] dbs = {"/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db1.txt",
-    "/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db2.txt"};
-
-    String[] stringTable = {"one","two"};
+    public PriceCheckActor(ArrayList<String> dbs, ActorRef client) {
+        this.dbs = dbs;
+        this.client = client;
+    }
 
     private static OneForOneStrategy strategy
             = new OneForOneStrategy(10,
             scala.concurrent.duration.Duration.create("1 minute"),
             DeciderBuilder
-                    .match(FileNotFoundException.class, e -> SupervisorStrategy.restart())
+                    .match(FileNotFoundException.class, e -> SupervisorStrategy.resume())
                     .matchAny(o -> restart())
                     .build());
 
@@ -51,15 +50,12 @@ public class PriceCheckActor extends AbstractLoggingActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-            .match(SearchRequest.class, r -> {
+            .match(Request.class, r -> {
 
                 this.title = r.getQuery();
+                reported = dbs.size();
 
-                System.out.println("GOT HERE");
-
-                reported = stringTable.length;
-
-                for (String db : stringTable) {
+                for (String db : dbs) {
 
                     UUID uuid = UUID.randomUUID();
                     String randomUUIDString = uuid.toString().substring(0,8);
@@ -80,30 +76,23 @@ public class PriceCheckActor extends AbstractLoggingActor {
                         );
                     ActorRef searchActor = context().actorOf(supervisorProps, "supervisor::" + randomUUIDString);
                     children.add(searchActor);
-                    //context().actorOf(supervisorProps, "supervisor::" + randomUUIDString);
-
-                    //searchActor.tell(r, getSelf());
                 }
             })
 
-            .match(String.class, s -> {
-                this.line = s;
-                System.out.println(line);
-                bookFoundHandler();
+            .match(Response.class, response -> {
+                if(response.getPrice()!=0) {
+                    bookFoundHandler(response);
+                } else {
+                    bookNotFoundHandler(response);
+                }
             })
-
 
             .matchAny(o -> log().info("Received unknown message"))
             .build();
     }
 
 
-
-    public static Props props() {
-        return Props.create(PriceCheckActor.class);
-    }
-
-    public void bookFoundHandler() {
+    public void bookFoundHandler(Response response) {
         if (bookFound) {
             return;
         }
@@ -113,26 +102,24 @@ public class PriceCheckActor extends AbstractLoggingActor {
             a.tell(PoisonPill.getInstance(), null);
         }
         getContext().getParent().tell("Found", null);
+        client.tell(response, null);
 
         getSelf().tell(PoisonPill.getInstance(), null);
 
-
     }
 
-    public void bookNotFoundHandler() {
+    public void bookNotFoundHandler(Response response) {
         notFoundCounter += 1;
 
         if(notFoundCounter == children.size()) {
             getContext().getParent().tell("Not found", null);
+            client.tell(response, null);
+
             getSelf().tell(PoisonPill.getInstance(), null);
         }
 
-
     }
 
-    public double getPrice(String db) {
-        return 0;
-    }
 
 
 }

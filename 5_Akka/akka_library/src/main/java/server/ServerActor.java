@@ -7,11 +7,22 @@ import common.RequestType;
 import scala.concurrent.duration.Duration;
 
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static akka.actor.SupervisorStrategy.restart;
 
 public class ServerActor extends AbstractLoggingActor {
+
+    private ArrayList<String> dbAddresses = new ArrayList<>();
+    private String orderFile = "orders.txt";
+
+
+    public ServerActor() {
+        this.dbAddresses.add("/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db1.txt");
+        this.dbAddresses.add("/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db2.txt");
+
+    }
 
     @Override
     public Receive createReceive() {
@@ -23,16 +34,14 @@ public class ServerActor extends AbstractLoggingActor {
 
                     //dispatch
                     if (r.getRequestType() == RequestType.SEARCH) {
-                        //search dbs
-                        //context().child("getPrice_router").get().tell(r, getSelf());
 
-                        context().actorOf(PriceCheckActor.props(), "PriceCheckActor::"+randomName);
+                        context().actorOf(Props.create(PriceCheckActor.class, dbAddresses, getSender()), "PriceCheckActor::"+randomName);
                         context().child("PriceCheckActor::"+randomName).get().tell(r, getSelf());
 
                     }
                     else if (r.getRequestType() == RequestType.ORDER) {
 
-                        context().actorOf(Props.create(OrderActor.class, r,"orders.txt"), "OrderActor::"+randomName);
+                        context().actorOf(Props.create(OrderActor.class, r, orderFile), "OrderActor::"+randomName);
                         context().child("OrderActor::"+randomName).get().tell(r, getSelf());
 
                     }
@@ -51,36 +60,6 @@ public class ServerActor extends AbstractLoggingActor {
 
                 .matchAny(o -> log().debug("Received unknown message"))
                 .build();
-    }
-
-
-
-
-
-    @Override
-    public void preStart() throws Exception {
-
-        //creat a pool of actors for every type of request
-        //search pool
-//        final ActorRef getPriceRouter =
-//                context().actorOf(PriceCheckActor.props()
-//                        .withRouter(new RoundRobinPool(10)
-//                                .withSupervisorStrategy(searchRouterStrategy())), "getPrice_router");
-//
-//        log().info("PriceCheckActor pool created");
-//        System.out.println(getSelf().path());
-
-    }
-
-
-
-    private static SupervisorStrategy searchRouterStrategy() {
-        return new OneForOneStrategy(10,
-                Duration.create("1 minute"),
-                DeciderBuilder
-                        .matchAny(o -> restart())
-                        .build()
-        );
     }
 
 

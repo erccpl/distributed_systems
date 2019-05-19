@@ -5,10 +5,8 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import common.OrderRequest;
 import common.Request;
-import common.SearchRequest;
-import common.StreamRequest;
+import common.RequestType;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,28 +25,29 @@ public class Client {
         final ActorRef clientActor = system.actorOf(Props.create(ClientActor.class), "client");
 
         // interaction
-        System.out.println("Ay yooo whats popping");
+        System.out.println("Welcome to the Library. Enter your request like so:");
+        System.out.println("Check if book is available: c <title>");
+        System.out.println("Order a book: o <title>");
+        System.out.println("Stream a book: s <title>");
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             String line = br.readLine();
             if (line.equals("q")) {
                 break;
-            } else if (line.equals("d")) {
+            } else if (line.equals("c")) {
 
-                Request searchRequest = new SearchRequest("AAA");
+                Request searchRequest = new Request("AAA", RequestType.SEARCH);
                 clientActor.tell(searchRequest, null);
-
 
             } else if (line.equals("o")) {
 
-                Request orderRequest = new OrderRequest("AAA");
-                System.out.println("here" + orderRequest.getRequestType());
+                Request orderRequest = new Request("AAA", RequestType.ORDER);
                 clientActor.tell(orderRequest, null);
 
             } else if (line.equals("s")) {
 
-                Request streamRequest = new StreamRequest("Pan Tadeusz");
-                System.out.println("got to stream request");
+                Request streamRequest = new Request("Pan Tadeusz", RequestType.STREAM);
                 clientActor.tell(streamRequest, null);
 
             }
