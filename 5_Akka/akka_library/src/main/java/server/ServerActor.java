@@ -2,8 +2,10 @@ package server;
 
 import akka.actor.*;
 import akka.japi.pf.DeciderBuilder;
+import akka.routing.RoundRobinPool;
 import common.Request;
 import common.RequestType;
+import common.Response;
 import scala.concurrent.duration.Duration;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -21,6 +23,7 @@ public class ServerActor extends AbstractLoggingActor {
         this.dbAddresses.add("/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db2.txt");
 
     }
+
     @Override
     public Receive createReceive() {
         return receiveBuilder()
@@ -43,9 +46,14 @@ public class ServerActor extends AbstractLoggingActor {
 
                     }
                     else if (r.getRequestType() == RequestType.STREAM) {
-
-                        context().actorOf(Props.create(StreamActor.class, r, "pan-tadeusz.txt", getSender()), "StreamActor::"+randomName);
-                        context().child("StreamActor::"+randomName).get().tell(r, getSelf());
+                        if(!r.getQuery().equals("Pan_Tadeusz")){
+                            Response response = new Response(RequestType.STREAM);
+                            response.setMessage("We don't have that book available for streaming");
+                            getSender().tell(response, null);
+                        } else {
+                            context().actorOf(Props.create(StreamActor.class, r, "pan-tadeusz.txt", getSender()), "StreamActor::" + randomName);
+                            context().child("StreamActor::" + randomName).get().tell(r, getSelf());
+                        }
 
                     }
                 })

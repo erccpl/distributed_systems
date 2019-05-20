@@ -31,7 +31,7 @@ public class PriceCheckActor extends AbstractLoggingActor {
     }
 
     private static OneForOneStrategy backoffSupervisorstrategy
-            = new OneForOneStrategy(10,
+            = new OneForOneStrategy(2,
             scala.concurrent.duration.Duration.create("1 minute"),
             DeciderBuilder
                     .match(ActorInitializationException.class, e -> SupervisorStrategy.restart())
@@ -58,7 +58,7 @@ public class PriceCheckActor extends AbstractLoggingActor {
                                         childProps,
                                         "dbSearcher::" + randomUUIDString.substring(0,8),
                                         Duration.ofSeconds(1),
-                                        Duration.ofSeconds(1),
+                                        Duration.ofSeconds(2),
                                         0.2)
                                 .withMaxNrOfRetries(1)
                                 .withSupervisorStrategy(backoffSupervisorstrategy)

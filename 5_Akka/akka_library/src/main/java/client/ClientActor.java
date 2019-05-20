@@ -3,13 +3,10 @@ package client;
 import akka.actor.AbstractActor;
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorSelection;
-import akka.dispatch.OnComplete;
 import akka.util.ByteString;
 import common.Request;
 import common.RequestType;
 import common.Response;
-
-import java.util.concurrent.CompletionStage;
 
 
 public class ClientActor extends AbstractLoggingActor {
@@ -49,6 +46,10 @@ public class ClientActor extends AbstractLoggingActor {
 
                     if ( response.getRequestType()==RequestType.ORDER ) {
                         System.out.println("Order placed for " + response.getMessage());
+                    }
+
+                    if ( response.getRequestType()==RequestType.STREAM) {
+                        System.out.println(response.getMessage());
                     }
 
                 })

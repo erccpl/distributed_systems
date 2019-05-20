@@ -1,6 +1,5 @@
 package server;
 
-import akka.Done;
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorRef;
 import akka.actor.PoisonPill;

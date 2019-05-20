@@ -47,7 +47,6 @@ public class Client {
                 clientActor.tell(orderRequest, null);
 
             } else if (line.startsWith("s")) {
-
                 Request streamRequest = new Request(lines[1], RequestType.STREAM);
                 clientActor.tell(streamRequest, null);
 
