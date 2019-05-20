@@ -1,6 +1,7 @@
 package server;
 
 import akka.actor.AbstractLoggingActor;
+import akka.actor.ActorInitializationException;
 import akka.actor.ActorRef;
 import common.RequestType;
 import common.Response;
@@ -12,10 +13,9 @@ import java.util.Scanner;
 
 public class SearchDbActor extends AbstractLoggingActor {
 
-    public SearchDbActor(String dbAddress, String title, ActorRef gpActor) throws FileNotFoundException {
+    public SearchDbActor(String dbAddress, String title, ActorRef gpActor) throws FileNotFoundException, ActorInitializationException {
 
         double price = 0;
-        System.out.println("Got to SearchDbActor");
 
         File dbFile = new File(dbAddress);
         Scanner scanner = new Scanner(dbFile);
@@ -32,8 +32,8 @@ public class SearchDbActor extends AbstractLoggingActor {
         response.setPrice(price);
         response.setMessage(title);
         gpActor.tell(response, getSelf());
-    }
 
+    }
 
     @Override
     public Receive createReceive() {
@@ -41,6 +41,4 @@ public class SearchDbActor extends AbstractLoggingActor {
                 .matchAny(o -> log().info("Received unknown message"))
                 .build();
     }
-
-
 }

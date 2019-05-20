@@ -3,9 +3,13 @@ package client;
 import akka.actor.AbstractActor;
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorSelection;
+import akka.dispatch.OnComplete;
+import akka.util.ByteString;
 import common.Request;
 import common.RequestType;
 import common.Response;
+
+import java.util.concurrent.CompletionStage;
 
 
 public class ClientActor extends AbstractLoggingActor {
@@ -17,31 +21,50 @@ public class ClientActor extends AbstractLoggingActor {
         return receiveBuilder()
                 .match(Request.class, r -> {
 
+                    ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                     if (r.getRequestType() == RequestType.SEARCH) {
-
-                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
 
                     } else if (r.getRequestType() == RequestType.ORDER) {
-
-                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
 
                     } else if (r.getRequestType() == RequestType.STREAM) {
-
-                        ActorSelection remoteServerActor = getContext().actorSelection(remoteServerPath);
                         remoteServerActor.tell(r, getSelf());
                     }
 
-                    })
+                })
                 .match(Response.class, response -> {
+                    if ( response.getRequestType()==RequestType.SEARCH ) {
+                        if (response.getPrice()== -1 ) {
+                            System.out.println("Database error, try again later");
+                        }
+                        else if (response.getPrice()==0) {
+                            System.out.println("We don't have that book");
 
+                        } else if (response.getPrice()!=0 ){
+                            System.out.println("Price for " + response.getMessage() + " is " + response.getPrice());
 
+                        }
+                    }
 
+                    if ( response.getRequestType()==RequestType.ORDER ) {
+                        System.out.println("Order placed for " + response.getMessage());
+                    }
+
+                })
+
+                .match(ByteString.class, bs -> {
+
+                    System.out.println(bs.utf8String());
 
 
                 })
-                .matchAny(o -> log().info("received unknown message"))
+
+                .match(String.class, s -> {
+                    System.out.println(s);
+                })
+
+                .matchAny(o -> log().info("Received unknown message"))
                 .build();
     }
 }

@@ -5,8 +5,6 @@ import akka.japi.pf.DeciderBuilder;
 import common.Request;
 import common.RequestType;
 import scala.concurrent.duration.Duration;
-
-
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -23,7 +21,6 @@ public class ServerActor extends AbstractLoggingActor {
         this.dbAddresses.add("/Users/eric/dev/sr/5_Akka/akka_library/src/main/resources/db2.txt");
 
     }
-
     @Override
     public Receive createReceive() {
         return receiveBuilder()
@@ -41,7 +38,7 @@ public class ServerActor extends AbstractLoggingActor {
                     }
                     else if (r.getRequestType() == RequestType.ORDER) {
 
-                        context().actorOf(Props.create(OrderActor.class, r, orderFile), "OrderActor::"+randomName);
+                        context().actorOf(Props.create(OrderActor.class, r, orderFile, getSender()), "OrderActor::"+randomName);
                         context().child("OrderActor::"+randomName).get().tell(r, getSelf());
 
                     }
@@ -67,7 +64,6 @@ public class ServerActor extends AbstractLoggingActor {
             = new OneForOneStrategy(10,
             Duration.create("1 minute"),
             DeciderBuilder
-            .match(ArithmeticException.class, e -> SupervisorStrategy.resume())
             .matchAny(o -> restart())
             .build());
 

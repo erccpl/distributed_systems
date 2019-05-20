@@ -5,25 +5,21 @@ import akka.japi.pf.DeciderBuilder;
 import akka.pattern.BackoffOpts;
 import akka.pattern.BackoffSupervisor;
 import common.Request;
+import common.RequestType;
 import common.Response;
-import scala.concurrent.duration.FiniteDuration;
-
-import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static akka.actor.SupervisorStrategy.restart;
+import static akka.actor.SupervisorStrategy.escalate;
 
 
 public class PriceCheckActor extends AbstractLoggingActor {
 
     private String title = "";
-    private String line = "";
     private ActorRef client;
 
     private int notFoundCounter = 0;
-    private int reported = 0;
     private Boolean bookFound = false;
 
     private ArrayList<ActorRef> children = new ArrayList<>();
@@ -34,18 +30,13 @@ public class PriceCheckActor extends AbstractLoggingActor {
         this.client = client;
     }
 
-    private static OneForOneStrategy strategy
+    private static OneForOneStrategy backoffSupervisorstrategy
             = new OneForOneStrategy(10,
             scala.concurrent.duration.Duration.create("1 minute"),
             DeciderBuilder
-                    .match(FileNotFoundException.class, e -> SupervisorStrategy.resume())
-                    .matchAny(o -> restart())
+                    .match(ActorInitializationException.class, e -> SupervisorStrategy.restart())
+                    .matchAny(o -> escalate())
                     .build());
-
-    @Override
-    public SupervisorStrategy supervisorStrategy() {
-        return strategy;
-    }
 
     @Override
     public Receive createReceive() {
@@ -53,7 +44,6 @@ public class PriceCheckActor extends AbstractLoggingActor {
             .match(Request.class, r -> {
 
                 this.title = r.getQuery();
-                reported = dbs.size();
 
                 for (String db : dbs) {
 
@@ -61,20 +51,20 @@ public class PriceCheckActor extends AbstractLoggingActor {
                     String randomUUIDString = uuid.toString().substring(0,8);
 
                     Props childProps = Props.create(SearchDbActor.class, db, title, getSelf());
-                    final FiniteDuration tenSeconds = FiniteDuration.apply(10, "seconds");
 
                     Props supervisorProps =
                         BackoffSupervisor.props(
-                                BackoffOpts.onStop(
+                                BackoffOpts.onFailure(
                                         childProps,
                                         "dbSearcher::" + randomUUIDString.substring(0,8),
-                                        Duration.ofSeconds(3),
-                                        Duration.ofSeconds(30),
+                                        Duration.ofSeconds(1),
+                                        Duration.ofSeconds(1),
                                         0.2)
-                                .withAutoReset(tenSeconds)
-                                .withSupervisorStrategy(strategy)
+                                .withMaxNrOfRetries(1)
+                                .withSupervisorStrategy(backoffSupervisorstrategy)
                         );
                     ActorRef searchActor = context().actorOf(supervisorProps, "supervisor::" + randomUUIDString);
+                    context().watch(searchActor);
                     children.add(searchActor);
                 }
             })
@@ -84,6 +74,16 @@ public class PriceCheckActor extends AbstractLoggingActor {
                     bookFoundHandler(response);
                 } else {
                     bookNotFoundHandler(response);
+                }
+            })
+
+            .match(Terminated.class, t -> {
+                System.out.println("***************TERMINATED********************");
+                if (!bookFound) {
+                    Response response = new Response(RequestType.SEARCH);
+                    response.setPrice(-1.0);
+                    response.setMessage(this.title);
+                    client.tell(response, null);
                 }
             })
 
@@ -101,7 +101,7 @@ public class PriceCheckActor extends AbstractLoggingActor {
         for (ActorRef a : children) {
             a.tell(PoisonPill.getInstance(), null);
         }
-        getContext().getParent().tell("Found", null);
+        getContext().getParent().tell("price found", null);
         client.tell(response, null);
 
         getSelf().tell(PoisonPill.getInstance(), null);
@@ -112,14 +112,12 @@ public class PriceCheckActor extends AbstractLoggingActor {
         notFoundCounter += 1;
 
         if(notFoundCounter == children.size()) {
-            getContext().getParent().tell("Not found", null);
+            getContext().getParent().tell("price not found", null);
             client.tell(response, null);
 
             getSelf().tell(PoisonPill.getInstance(), null);
         }
 
     }
-
-
 
 }

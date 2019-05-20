@@ -2,25 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5044d065-4ccd-4399-af95-458ef55aa295" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.conf" beforeDir="false" afterPath="$PROJECT_DIR$/client.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders.txt" beforeDir="false" afterPath="$PROJECT_DIR$/orders.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.conf" beforeDir="false" afterPath="$PROJECT_DIR$/server.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/ClientActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ClientActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/OrderRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/SearchRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/StreamRequest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/OrderActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/OrderActor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Response.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/SearchDbActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/SearchDbActor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerActor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/StreamActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/StreamActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../akka_library2/src/main/java/client/ClientActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../akka_library2/src/main/java/client/ClientActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../akka_library2/src/main/java/common/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/../akka_library2/src/main/java/common/Response.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -42,84 +35,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
+            <state relative-caret-position="614">
+              <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3316#3317#0" expanded="true" />
-                <element signature="e#3347#3348#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="115" column="40" lean-forward="true" selection-start-line="115" selection-start-column="40" selection-end-line="115" selection-end-column="40" />
+            <state relative-caret-position="136">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/server/StreamActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="788">
+              <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/SearchDbActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/Response.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-              <folding>
-                <element signature="e#232#233#0" expanded="true" />
-                <element signature="e#278#279#0" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-                <element signature="e#208#209#0" expanded="true" />
-                <element signature="e#250#251#0" expanded="true" />
-                <element signature="e#284#285#0" expanded="true" />
-                <element signature="e#330#331#0" expanded="true" />
-                <element signature="e#368#369#0" expanded="true" />
-                <element signature="e#402#403#0" expanded="true" />
-                <element signature="e#432#433#0" expanded="true" />
-                <element signature="e#610#611#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/Request.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/RequestType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -520,20 +476,22 @@
         <option value="$PROJECT_DIR$/src/main/java/server/GetPriceActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/SearchRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/OrderRequest.java" />
-        <option value="$PROJECT_DIR$/orders.txt" />
         <option value="$PROJECT_DIR$/src/main/java/common/StreamRequest.java" />
         <option value="$PROJECT_DIR$/pan-tadeusz.txt" />
         <option value="$PROJECT_DIR$/src/main/java/common/Request.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/OrderActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/StreamActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/DbHandle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/ServerActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/client/ClientActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/Response.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/OrderActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/SearchDbActor.java" />
+        <option value="$PROJECT_DIR$/orders.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/StreamActor.java" />
+        <option value="$PROJECT_DIR$/server.conf" />
+        <option value="$PROJECT_DIR$/client.conf" />
+        <option value="$PROJECT_DIR$/src/main/java/client/ClientActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/ServerActor.java" />
       </list>
     </option>
   </component>
@@ -542,6 +500,12 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-406" />
@@ -557,67 +521,44 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
+              <item name="akka_library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
+              <item name="akka_library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
+              <item name="akka_library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
+              <item name="akka_library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
+              <item name="akka_library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="akka_library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akka_library" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -625,7 +566,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558292073292" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558353598396" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -736,12 +677,14 @@
       <updated>1558082337750</updated>
       <workItem from="1558082340475" duration="41902000" />
       <workItem from="1558267592002" duration="1380000" />
-      <workItem from="1558269704469" duration="13687000" />
+      <workItem from="1558269704469" duration="16551000" />
+      <workItem from="1558344301497" duration="9373000" />
+      <workItem from="1558353812680" duration="1294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56969000" />
+    <option name="totallyTimeSpent" value="70500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-406" y="-1417" width="1280" height="1417" extended-state="0" />
@@ -752,7 +695,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19299674" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18322475" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -763,12 +706,11 @@
       <window_info anchor="bottom" id="Build" order="6" weight="0.3295796" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.3295796" />
-      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.4280245" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.27947932" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3993994" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" />
-      <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Cargo" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -781,6 +723,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="9" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="10" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
+      <window_info anchor="right" id="Maven Projects" order="12" weight="0.32980457" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -811,13 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="320" column="12" selection-start-line="320" selection-start-column="12" selection-end-line="320" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -877,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe.akka/akka-actor_2.12/2.5.22/865250a438d6c65e1a050e2359bcddd95f3d06be/akka-actor_2.12-2.5.22-sources.jar!/akka/actor/Actor.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -908,47 +837,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/common/SearchRequest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/common/StreamRequest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/common/OrderRequest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/OrderActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/StreamActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pan-tadeusz.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="593">
           <caret line="2866" column="18" selection-start-line="2866" selection-start-column="18" selection-end-line="2866" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -959,39 +851,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/DbHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#200#201#0" expanded="true" />
-            <element signature="e#244#245#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/DbHandle.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Response.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/NativeConstructorAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -999,25 +860,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/Response.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3316#3317#0" expanded="true" />
-            <element signature="e#3347#3348#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="396">
+          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="408">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
@@ -1028,51 +881,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/client/ClientActor.java">
+    <entry file="file://$PROJECT_DIR$/pan-tadeusz.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/Request.java">
+    <entry file="file://$USER_HOME$/Downloads/akka-samples-supervision-java/src/main/java/supervision/Expression.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/Response.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db2.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-          <folding>
-            <element signature="e#232#233#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#330#331#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/SearchDbActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        <state relative-caret-position="663">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/OrderActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/akka-samples-supervision-java/src/main/java/supervision/ArithmeticService.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/akka-samples-supervision-java/src/main/java/supervision/FlakyExpressionCalculator.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1081,8 +961,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/PriceCheckActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="115" column="40" lean-forward="true" selection-start-line="115" selection-start-column="40" selection-end-line="115" selection-end-column="40" />
+        <state relative-caret-position="136">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/StreamActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="788">
+          <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/client/ClientActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="43" column="54" lean-forward="true" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

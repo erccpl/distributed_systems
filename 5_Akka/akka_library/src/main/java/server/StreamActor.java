@@ -1,5 +1,6 @@
 package server;
 
+import akka.Done;
 import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorRef;
 import akka.actor.PoisonPill;
@@ -10,10 +11,9 @@ import akka.stream.javadsl.FramingTruncation;
 import akka.stream.javadsl.Sink;
 import akka.util.ByteString;
 import common.Request;
-import scala.Function1;
 
 import java.io.File;
-import java.nio.file.NoSuchFileException;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -36,53 +36,38 @@ public class StreamActor extends AbstractLoggingActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(Request.class, r -> {
-                    System.out.println("got to stream reader");
-
                     try {
 
-                        //final Materializer materializer = ActorMaterializer.create(context().system());
                         final Path file = Paths.get(path);
+
                         File tmpDir = new File(path);
                         if (!tmpDir.exists()) {
-                            System.out.println("No such file");
-                            getSelf().tell(PoisonPill.getInstance(), null);
+                            client.tell("Book unavailable for streaming", null);
+                            throw new FileNotFoundException();
                         }
 
-
-                        final Function1<Throwable, Supervision.Directive> decider = exc -> {
-                            if (exc instanceof NoSuchFileException) {
-                                System.out.println("ok so actually got to no file");
-                                return Supervision.stop();
-                            } else return Supervision.stop();
-                        };
-
                         final Materializer mat =
-                                ActorMaterializer.create(
-                                    ActorMaterializerSettings.create(context().system())
-                                    .withSupervisionStrategy(decider),
-                                    context().system());
-
+                                ActorMaterializer.create(context().system());
 
 
                         CompletionStage<IOResult> ioResult =
-                            FileIO.fromPath(file)
-                                .via(
-                                    Framing.delimiter(ByteString.fromString("\n"),
+                                FileIO.fromPath(file)
+                                        .via(Framing.delimiter(ByteString.fromString("\n"),
                                             1024,
                                             FramingTruncation.ALLOW))
-                                .throttle(1, Duration.ofSeconds(1))
-                                .to(Sink.actorRef(client, "OK"))
-                                .run(mat);
-
+                                        .throttle(1, Duration.ofSeconds(1))
+                                        .to(Sink.actorRef(client, "OK"))
+                                        .run(mat);
 
                         client.tell(ioResult, getSelf());
 
 
                     } catch (Exception e) {
-                        System.out.println("No such book");
+                        getSender().tell("No such book", null);
+                    } finally {
+                        getSelf().tell(PoisonPill.getInstance(), null);
                     }
 
-                    //getSelf().tell(PoisonPill.getInstance(), null);
 
                 })
                 .matchAny(o -> log().info("Received unknown message"))

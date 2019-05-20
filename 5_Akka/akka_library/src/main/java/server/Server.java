@@ -21,7 +21,7 @@ public class Server {
         final ActorSystem system = ActorSystem.create("server_system", config);
         system.actorOf(Props.create(ServerActor.class), "server");
 
-        System.out.println("\n Sever started. Press 'q' to terminate the server");
+        System.out.println("\nSever started. Press 'q' to terminate the server");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {

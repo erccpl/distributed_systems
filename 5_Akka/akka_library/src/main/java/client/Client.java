@@ -33,21 +33,22 @@ public class Client {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             String line = br.readLine();
+            String[] lines  = line.split(" ");
+
             if (line.equals("q")) {
                 break;
-            } else if (line.equals("c")) {
+            } else if (line.startsWith("c")) {
 
-                Request searchRequest = new Request("AAA", RequestType.SEARCH);
+                Request searchRequest = new Request(lines[1], RequestType.SEARCH);
                 clientActor.tell(searchRequest, null);
 
-            } else if (line.equals("o")) {
-
-                Request orderRequest = new Request("AAA", RequestType.ORDER);
+            } else if (line.startsWith("o")) {
+                Request orderRequest = new Request(lines[1], RequestType.ORDER);
                 clientActor.tell(orderRequest, null);
 
-            } else if (line.equals("s")) {
+            } else if (line.startsWith("s")) {
 
-                Request streamRequest = new Request("Pan Tadeusz", RequestType.STREAM);
+                Request streamRequest = new Request(lines[1], RequestType.STREAM);
                 clientActor.tell(streamRequest, null);
 
             }
