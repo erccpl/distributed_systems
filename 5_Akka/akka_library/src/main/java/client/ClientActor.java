@@ -32,39 +32,30 @@ public class ClientActor extends AbstractLoggingActor {
                 })
                 .match(Response.class, response -> {
                     if ( response.getRequestType()==RequestType.SEARCH ) {
-                        if (response.getPrice()== -1 ) {
+                        if (response.getPrice() == -1) {
                             System.out.println("Database error, try again later");
                         }
-                        else if (response.getPrice()==0) {
+                        else if (response.getPrice() == 0) {
                             System.out.println("We don't have that book");
 
-                        } else if (response.getPrice()!=0 ){
+                        } else if (response.getPrice() !=0 ){
                             System.out.println("Price for " + response.getMessage() + " is " + response.getPrice());
-
                         }
                     }
-
-                    if ( response.getRequestType()==RequestType.ORDER ) {
+                    if (response.getRequestType()==RequestType.ORDER ) {
                         System.out.println("Order placed for " + response.getMessage());
                     }
-
                     if ( response.getRequestType()==RequestType.STREAM) {
                         System.out.println(response.getMessage());
                     }
-
                 })
-
                 .match(ByteString.class, bs -> {
-
                     System.out.println(bs.utf8String());
 
-
                 })
-
                 .match(String.class, s -> {
                     System.out.println(s);
                 })
-
                 .matchAny(o -> log().info("Received unknown message"))
                 .build();
     }

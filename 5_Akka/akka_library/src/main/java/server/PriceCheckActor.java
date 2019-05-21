@@ -60,7 +60,6 @@ public class PriceCheckActor extends AbstractLoggingActor {
                                         Duration.ofSeconds(1),
                                         Duration.ofSeconds(2),
                                         0.2)
-                                .withMaxNrOfRetries(1)
                                 .withSupervisorStrategy(backoffSupervisorstrategy)
                         );
                     ActorRef searchActor = context().actorOf(supervisorProps, "supervisor::" + randomUUIDString);
@@ -76,9 +75,8 @@ public class PriceCheckActor extends AbstractLoggingActor {
                     bookNotFoundHandler(response);
                 }
             })
-
             .match(Terminated.class, t -> {
-                System.out.println("***************TERMINATED********************");
+                System.out.println("***********DBSEARCH SUPERVISOR TERMINATED***********");
                 if (!bookFound) {
                     Response response = new Response(RequestType.SEARCH);
                     response.setPrice(-1.0);
@@ -86,7 +84,6 @@ public class PriceCheckActor extends AbstractLoggingActor {
                     client.tell(response, null);
                 }
             })
-
             .matchAny(o -> log().info("Received unknown message"))
             .build();
     }
@@ -96,7 +93,6 @@ public class PriceCheckActor extends AbstractLoggingActor {
         if (bookFound) {
             return;
         }
-
         bookFound = true;
         for (ActorRef a : children) {
             a.tell(PoisonPill.getInstance(), null);
